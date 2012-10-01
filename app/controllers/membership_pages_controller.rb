@@ -4,4 +4,7 @@ class MembershipPagesController < ApplicationController
 
   def help
   end
+
+  def about
+  end
 end
