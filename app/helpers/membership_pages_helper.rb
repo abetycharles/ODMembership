@@ -1,0 +1,2 @@
+module MembershipPagesHelper
+end

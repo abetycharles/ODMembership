@@ -1,4 +1,8 @@
 ODMembership::Application.routes.draw do
+  get "membership_pages/home"
+
+  get "membership_pages/help"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
