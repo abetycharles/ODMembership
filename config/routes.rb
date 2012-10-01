@@ -2,8 +2,9 @@ ODMembership::Application.routes.draw do
   
   root to: "membership_pages#home"
 
-  match '/help', to: "membership_pages#help"
-  match '/about', to: "membership_pages#about"
+  match '/help',    to: "membership_pages#help"
+  match '/about',   to: "membership_pages#about"
+  match '/contact', to: "membership_pages#contact"
 
 
   # The priority is based upon order of creation:
