@@ -1,5 +1,8 @@
 ODMembership::Application.routes.draw do
+  resources :users
   
+  match  '/signin', to: 'users#new'
+
   root to: "membership_pages#home"
 
   match '/help',    to: "membership_pages#help"
