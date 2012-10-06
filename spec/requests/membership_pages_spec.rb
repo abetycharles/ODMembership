@@ -2,37 +2,77 @@ require 'spec_helper'
 
 describe "Membership Pages" do
   
-  let(:base_title) { "Membership App" }
 
   subject { page }
 
+  shared_examples_for "all membership pages" do
+    it { should have_selector('h1', text: heading) }
+    it { should have_selector('title', text: full_title(page_title)) }
+  end
+
   describe "Home page" do
   	before { visit root_path }
+    let(:heading) { 'Membership Management' }
+    let(:page_title) { '' }
 
-    it { should have_selector('h1', text: "#{base_title}" ) }
-    it { should have_selector('title', text: "#{base_title} | Home" ) }
-    
+    it_should_behave_like "all membership pages"
+
+    it "should have the right links on the layout" do
+
+      visit root_path
+
+      click_link "Home"
+      page.should have_selector('title', text: full_title(''))
+
+      click_link "About"
+      page.should have_selector('title', text: full_title('About Us'))
+      
+      click_link "Membership Management"
+      page.should have_selector('title', text: full_title(''))
+
+      click_link "Sign in!"
+      page.should have_selector('title', text: full_title('Sign in'))
+
+      click_link "Help"
+      page.should have_selector('title', text: full_title('Help'))
+
+      click_link "Contact"
+      page.should have_selector('title', text: full_title('Contact'))
+
+
+
+
+    end
+
   end
 
   describe "Help page" do
   	before { visit help_path }
+    let(:heading) { 'Help' }
+    let(:page_title) { heading }
 
-  	it { should have_selector('h1', text: 'Help') }
-  	it { should have_selector('title', text: "#{base_title} | Help") }
+    it_should_behave_like "all membership pages"
+
   end
  
-  describe "About Page" do
+  shared_examples_for "About page" do
   	before { visit about_path }
+    let(:heading) {'About Us'}
+    let(:page_title) { heading }
 
-  	it { should have_selector('h1', text: 'About Us')  }
-  	it { should have_selector('title', text: "#{base_title} | About Us") }
+    it_should_behave_like "all membership pages"
+
   end
 
-  describe "Contact Page" do
+  describe "Contact page" do
   	before { visit contact_path }
+    let(:heading) {'Contact'}
+    let(:page_title) { heading }
 
-  	it { should have_selector('h1', text: 'Contact') }
-  	it { should have_selector('title', text: "#{base_title} | Contact")}
+    it_should_behave_like "all membership pages"
+
   end
+
+
   
 end
