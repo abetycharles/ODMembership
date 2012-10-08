@@ -115,5 +115,15 @@ describe Member do
     it { should_not be_valid }
   end
   
+  describe "email address with mixed case" do
+    let(:mixed_case_email) { "Foo@ExAMPle.CoM" }
+
+    it "should be saved as all lower-case" do
+      @member.email = mixed_case_email
+      @member.save
+
+      @member.reload.email.should == mixed_case_email.downcase
+    end
+  end
 
 end
