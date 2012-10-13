@@ -16,4 +16,8 @@ class MembersController < ApplicationController
 			render 'new'
 		end
 	end
+
+	def index
+		@members = Member.all
+	end
 end
